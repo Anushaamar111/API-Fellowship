@@ -37,7 +37,7 @@ router.get('/books/:id', async (req, res) => {
 })
 
 //Delete a book
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/books/:id', async (req, res) => {
     try {
         await User.findByIdAndDelete(req.params.id);
         res.status(200).json({ message: 'Book deleted successfully' });
