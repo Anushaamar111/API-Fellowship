@@ -1,0 +1,302 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Book API",
+    "version": "1.0.0",
+    "description": "API for managing books - Fellowship Project"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000",
+      "description": "Development server"
+    },
+    {
+      "url": "https://api-fellowship.herokuapp.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/api/add": {
+      "post": {
+        "summary": "Create a new book",
+        "tags": [
+          "Books"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "author",
+                  "price",
+                  "description"
+                ],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "author": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "read": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Book created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "savedBook": {
+                      "$ref": "#/components/schemas/Book"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/api/books": {
+      "get": {
+        "summary": "Returns the list of all books",
+        "tags": [
+          "Books"
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of books",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Book"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/books/{id}": {
+      "get": {
+        "summary": "Get the book by id",
+        "tags": [
+          "Books"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The book id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The book response by id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The book was not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove the book by id",
+        "tags": [
+          "Books"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The book id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The book was deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The book was not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update the book by the id",
+        "tags": [
+          "Books"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The book id"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "author": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "read": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The book was updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "updatedBook": {
+                      "$ref": "#/components/schemas/Book"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The book was not found"
+          },
+          "500": {
+            "description": "Some error happened"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Book": {
+        "type": "object",
+        "required": [
+          "name",
+          "author",
+          "price",
+          "description"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "The auto-generated id of the book"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the book"
+          },
+          "author": {
+            "type": "string",
+            "description": "The author of the book"
+          },
+          "price": {
+            "type": "number",
+            "description": "The price of the book"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the book"
+          },
+          "read": {
+            "type": "boolean",
+            "description": "Whether the book has been read",
+            "default": false
+          }
+        },
+        "example": {
+          "_id": "60d5ecb54eb5a33d4c8f5a1a",
+          "name": "The Great Gatsby",
+          "author": "F. Scott Fitzgerald",
+          "price": 299,
+          "description": "A classic American novel",
+          "read": false
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Books",
+      "description": "The books managing API"
+    }
+  ]
+}

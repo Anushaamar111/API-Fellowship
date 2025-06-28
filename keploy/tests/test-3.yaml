@@ -1,0 +1,38 @@
+version: api.keploy.io/v1beta1
+kind: Http
+metadata:
+  name: test-3
+  labels:
+    test-set: API-Fellowship
+spec:
+  request:
+    method: PUT
+    url: http://localhost:8000/api/books/{{.mongoObjectId}}
+    header:
+      Content-Type: application/json
+    body: |
+      {
+        "name": "The Art of Programming - Second Edition",
+        "author": "John Developer",
+        "price": 699,
+        "description": "Updated comprehensive guide with new chapters",
+        "read": true
+      }
+  response:
+    status_code: 200
+    header:
+      Content-Type: application/json; charset=utf-8
+    body: |
+      {
+        "message": "Book updated successfully",
+        "updatedBook": {
+          "_id": "{{.mongoObjectId}}",
+          "name": "The Art of Programming - Second Edition",
+          "author": "John Developer",
+          "price": 699,
+          "description": "Updated comprehensive guide with new chapters", 
+          "read": true,
+          "__v": 0
+        }
+      }
+  created: 1719532215

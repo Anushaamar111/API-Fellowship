@@ -1,0 +1,21 @@
+version: api.keploy.io/v1beta1
+kind: Http
+metadata:
+  name: test-4
+  labels:
+    test-set: API-Fellowship
+spec:
+  request:
+    method: DELETE
+    url: http://localhost:8000/api/books/{{.mongoObjectId}}
+    header:
+      Content-Type: application/json
+  response:
+    status_code: 200
+    header:
+      Content-Type: application/json; charset=utf-8
+    body: |
+      {
+        "message": "Book deleted successfully"
+      }
+  created: 1719532216

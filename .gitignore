@@ -8,6 +8,7 @@ node_modules/
 logs/
 *.log
 npm-debug.log*
+keploy-logs.txt
 
 # OS generated files
 .DS_Store
@@ -20,7 +21,34 @@ coverage/
 .vscode/
 .idea/
 
-# Optional: Ignore MongoDB memory server binaries
+# MongoDB memory server binaries
 mongodb-memory-server-*
 
-# Optional: Ignore build output
+# Build output
+dist/
+build/
+
+# Keploy binaries and archives
+keploy.exe
+keploy.tar.gz
+*.tar.gz
+
+# Temporary files
+*.tmp
+*.temp
+
+# Shell scripts that are environment-specific
+install.sh
+
+# Generated documentation files (development artifacts)
+blog-post-draft.md
+chrome-extension-guide.md
+blog-publishing-guide.md
+TASK-2-ACTION-PLAN.md
+IMPLEMENTATION_SUMMARY.md
+curl-commands.md
+website-testing-checklist.md
+
+# Duplicate or old files
+openai.yaml
+image.png
