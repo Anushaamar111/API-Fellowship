@@ -38,6 +38,7 @@ Content-Type: application/json
   "description": "A philosophical novel about destiny."
 }
 
+
 git clone https://github.com/Anushaamar111/API-Fellowship.git
 cd API-Fellowship
 npm install
@@ -45,3 +46,7 @@ npm test
 
 
 ![image](https://github.com/user-attachments/assets/66184e9f-676d-4094-abc5-1d0e8a43b007)
+![Screenshot 2025-06-28 094647](https://github.com/user-attachments/assets/88f94dfa-a6c8-4319-8396-2ed57a1efc9a)
+![Screenshot 2025-06-28 094602](https://github.com/user-attachments/assets/fbccbaa2-18c6-47ac-a72f-46f3a1e84bcf)
+![Screenshot 2025-06-28 021135](https://github.com/user-attachments/assets/4446b161-f82c-46fe-99ed-df51a09c71ef)
+
